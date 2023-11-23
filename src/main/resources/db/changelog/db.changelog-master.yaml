@@ -1,0 +1,28 @@
+databaseChangeLog:
+- logicalFilePath: db.changelog-master.yaml
+- changeSet:
+    id: 1664983070039-1
+    author: test
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        tableName: test
+
+    - sqlFile:
+        path: 'testWithParams.sql'
+        relativeToChangelogFile: true
+    rollback:
+      - dropTable:
+          tableName: test
